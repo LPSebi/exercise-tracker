@@ -37,7 +37,7 @@ app.post('/api/users/:_id/exercises', (req, res) => {
         description,
         duration: Number(duration),
         date,
-        _id: uuid(),
+        _id,
     }
     exercises.push(exercise)
     logs.push({ log: [exercise] })
@@ -48,7 +48,7 @@ app.post('/api/users/:_id/exercises', (req, res) => {
 app.get('/api/users/:_id/logs', (req, res) => {
     const { _id } = req.params
     const { from, to, limit } = req.body
-    let foundLogs = logs
+    let foundLogs = logs.filter((log) => log._id === _id)
 
     if (from) {
         foundLogs = foundLogs.filter(
@@ -68,7 +68,6 @@ app.get('/api/users/:_id/logs', (req, res) => {
     if (!user) {
         return res.status(404).json({ error: 'User not found' })
     }
-    const userLogs = foundLogs.filter((log) => log._id === _id)
     res.json({ ...user, log: userLogs, count: userLogs.length })
 })
 
