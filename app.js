@@ -72,7 +72,7 @@ app.get('/api/users/:_id/logs', (req, res) => {
         return res.status(404).json({ error: 'User not found' })
     }
     const userLogs = foundLogs.filter((log) => log._id === _id)
-    res.json(userLogs)
+    res.json({ ...user, log: userLogs })
 })
 
 app.listen(3000, () => {
