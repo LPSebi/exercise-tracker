@@ -45,7 +45,7 @@ app.post('/api/users/:_id/exercises', (req, res) => {
     } else {
         logs.find((log) => log._id === _id).count++
     }
-    res.json({ exercise, username: user.username })
+    res.json({ exercise, ...user })
 })
 
 app.get('/api/users/:_id/logs', (req, res) => {
