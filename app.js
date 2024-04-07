@@ -63,7 +63,7 @@ app.get('/api/users/:_id/logs/:from?/:to?/:limit?', (req, res) => {
         )
     }
     if (limit) {
-        foundLogs = foundLogs.slice(0, limit)
+        foundLogs = foundLogs.slice(0, limit - 1)
     }
 
     const user = users.find((user) => user._id === _id)
