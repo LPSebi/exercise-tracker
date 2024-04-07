@@ -15,7 +15,7 @@ app.post('/api/users', (req, res) => {
     const username = req.body.username
     const user = { username, _id: uuid() }
     users.push(user)
-    logs.push({ username, _id: user._id })
+    // logs.push({ username, _id: user._id })
     res.json(user)
 })
 
