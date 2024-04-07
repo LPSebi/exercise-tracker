@@ -40,7 +40,7 @@ app.post('/api/users/:_id/exercises', (req, res) => {
         _id,
     }
     exercises.push(exercise)
-    logs.push({ log: [exercise] })
+    logs.push(exercise)
 
     res.json({ ...exercise, ...user })
 })
