@@ -40,11 +40,8 @@ app.post('/api/users/:_id/exercises', (req, res) => {
         _id: uuid(),
     }
     exercises.push(exercise)
-    if (!logs.find((log) => log._id === _id)) {
-        logs.push({ log: [exercise], count: 1 })
-    } else {
-        logs.find((log) => log._id === _id).count++
-    }
+    logs.push({ log: [exercise] })
+
     res.json({ ...exercise, ...user })
 })
 
@@ -72,7 +69,7 @@ app.get('/api/users/:_id/logs', (req, res) => {
         return res.status(404).json({ error: 'User not found' })
     }
     const userLogs = foundLogs.filter((log) => log._id === _id)
-    res.json({ user, log: userLogs, count: userLogs.count })
+    res.json({ ...user, log: userLogs, count: userLogs.length })
 })
 
 app.listen(3000, () => {
