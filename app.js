@@ -68,7 +68,7 @@ app.get('/api/users/:_id/logs', (req, res) => {
     if (!user) {
         return res.status(404).json({ error: 'User not found' })
     }
-    res.json({ ...user, log: userLogs, count: userLogs.length })
+    res.json({ ...user, log: foundLogs, count: foundLogs.length })
 })
 
 app.listen(3000, () => {
