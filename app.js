@@ -50,6 +50,7 @@ app.get('/api/users/:_id/logs', (req, res) => {
     const { from, to, limit } = req.body
     let foundLogs = logs.filter((log) => log._id === _id)
     console.log(foundLogs)
+    console.log(logs)
 
     if (from) {
         foundLogs = foundLogs.filter(
