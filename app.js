@@ -1,9 +1,10 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import uuid from 'uuid/v4'
+import cors from 'cors'
+import { v4 as uuid } from 'uuid'
 const app = express()
 app.use(bodyParser.urlencoded({ extended: true }))
-
+app.use(cors({ origin: '*' }))
 const exercises = []
 
 const users = []
