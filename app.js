@@ -51,19 +51,18 @@ app.get('/api/users/:_id/logs/:from?/:to?/:limit?', (req, res) => {
         console.log(log)
         return log._id === _id
     })
+    console.log(from, to, limit)
 
-    if (from) {
-        foundLogs = foundLogs.filter(
-            (log) => new Date(log.date) >= new Date(from)
-        )
-    }
-    if (to) {
-        foundLogs = foundLogs.filter(
-            (log) => new Date(log.date) <= new Date(to)
-        )
+    if (from && to) {
+        foundLogs = foundLogs.filter((log) => {
+            return (
+                new Date(log.date) >= new Date(from) &&
+                new Date(log.date) <= new Date(to)
+            )
+        })
     }
     if (limit) {
-        foundLogs = foundLogs.slice(0, limit - 1)
+        foundLogs = foundLogs.slice(0, limit)
     }
 
     const user = users.find((user) => user._id === _id)
