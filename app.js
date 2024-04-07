@@ -45,8 +45,9 @@ app.post('/api/users/:_id/exercises', (req, res) => {
     res.json({ ...exercise, ...user })
 })
 
-app.get('/api/users/:_id/logs/:from?/:to?/:limit?', (req, res) => {
-    const { _id, from, to, limit } = req.params
+app.get('/api/users/:_id/logs', (req, res) => {
+    const { _id } = req.params
+    const { from, to, limit } = req.query
     let foundLogs = logs.filter((log) => {
         console.log(log)
         return log._id === _id
